@@ -1,0 +1,22 @@
+
+
+<% @restaurants.each do |restaurant| %>
+  <div class="product">
+    <div class='product-upvote'>
+      <div class='product-count'>
+        <%= restaurant.average_rating %>
+      </div>
+    </div>
+    <div class='product-body'>
+      <%= link_to restaurant_path(restaurant) do %>
+        <h3><%= restaurant.name %></h3>
+        <p><%= restaurant.address %></p>
+      <% end %>
+    </div>
+    <ul class="list-inline product-controls hidden-sm hidden-xs">
+      <li><a href=""><i class="fa fa-heart"></i></a></li>
+      <li><a href=""><i class="fa fa-share"></i></a></li>
+      <li><a href=""><i class="fa fa-star"></i></a></li>
+    </ul>
+  </div>
+<% end %>

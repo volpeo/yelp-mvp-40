@@ -1,0 +1,41 @@
+
+<div class="container">
+  <h1>
+    <%= @restaurant.name %>
+    (<%= @restaurant.average_rating %>)
+    <small>
+      <span class="label label-default"><%= @restaurant.category %></span>
+    </small>
+  </h1>
+  <p class="text-muted">
+    <%= @restaurant.address %>
+  </p>
+
+  <p>
+    <%= link_to @restaurant.phone_number, "tel:" + @restaurant.phone_number.remove(' ') %>
+  </p>
+
+  <hr>
+
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content, input_html: { rows: 5 } %>
+    <%= f.input :rating, collection: (0..5).to_a %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <hr>
+
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <% if review.persisted? %>
+        <li class="list-group-item">
+          <h4><%= review.rating %>/5</h4>
+          <div>
+            <%= review.content %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>
